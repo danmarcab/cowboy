@@ -1206,6 +1206,7 @@ commands(State, StreamID, [stop|Tail]) ->
 	%% was sent fully we should be able to start working on
 	%% the next request concurrently. This can be done as a
 	%% future optimization.
+	erlang:garbage_collect(),
 	maybe_terminate(State, StreamID, Tail);
 %% Log event.
 commands(State=#state{opts=Opts}, StreamID, [Log={log, _, _, _}|Tail]) ->
